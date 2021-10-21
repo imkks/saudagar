@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="text-center">stock name</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h3>Promoter holding</h3>
+                <div class="card text-light bg-warning">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=info.holdings.totalPromoterHolding[0].title%></h5>
+                        <p class="card-text"><%=info.holdings.totalPromoterHolding[0].message %></p>
+                    </div>
+                </div>
+                <div class="card text-light bg-warning">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=info.holdings.pledgedPromoterHolding[0].title%></h5>
+                        <p class="card-text"><%=info.holdings.pledgedPromoterHolding[0].message%></p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-6">
+                <h3>Institutional holding</h3>
+                <div class="card text-dark bg-info">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=info.holdings.mutualFundHolding[0].title%></h5>
+                        <p class="card-text"><%=info.holdings.mutualFundHolding[0].message%></p>
+                    </div>
+                </div>
+                <div class="card text-dark bg-info">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=info.holdings.foreignInstitutionalHolding[0].title%></h5>
+                        <p class="card-text"><%=info.holdings.foreignInstitutionalHolding[0].message%></p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <h2 class>Peer comparison</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Stock</th>
+                <th scope="col">PE Ratio</th>
+                <th scope="col">PB Ratio</th>
+                <th scope="col">Dividend yield</th>
+              </tr>
+            </thead>
+            <tbody>
+                <%for(let i=0;i<info.peers.length;i++){%>
+              <tr>
+                <th scope="row"><%=info.peers[i].name%></th>
+                <td><%=info.peers[i].ratios.apef%></td>
+                <td><%=info.peers[i].ratios.pbr %></td>
+                <td><%=info.peers[i].ratios.divDps%></td>
+              </tr>
+              <%} %>
+              
+            </tbody>
+          </table>
+          <h2 >Stock in News</h2>
+        <div class="row">
+            <%for(let i=0;i<info.news.length;i++){%>
+
+            <div class="col-4">
+                <div class="card" style="width: 100%">
+                    <img src="<%=info.news[i].image%>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"><%=info.news[i].title%></h5>
+                      <p class="card-text"><%=info.news[i].description%></p>
+                      <a href="<%=info.news[i].link%>" class="btn btn-primary">Go to News</a>
+                    </div>
+                  </div>
+            </div>
+            <%} %>
+            
+            
+        </div>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
